@@ -37,13 +37,13 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        # Title
+        
         MENU_TEXT = get_font(60).render("Welcome to Sudoku ", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
-        # Buttons
+        
         EASY_BUTTON = Button(
             pos=(640, 250),
             text="EASY 30",
@@ -72,7 +72,7 @@ def main_menu():
             button.change_color(MENU_MOUSE_POS)
             button.update(SCREEN)
 
-        # Event Loop
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
