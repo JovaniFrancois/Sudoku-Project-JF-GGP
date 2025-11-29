@@ -63,3 +63,31 @@ class Board:
             return True
 
         return False
+    def is_full(self):
+        for r in range(self.size):
+            for c in range(self.size):
+                if self.cells[r][c].value == 0:
+                    return False
+        return True
+
+    def update_board(self):
+        self.board = [[self.cells[r][c].value for c in range(self.size)]
+                      for r in range(self.size)]
+
+    def check_board(self):
+        for r in range(self.size):
+            for c in range(self.size):
+                if self.cells[r][c].value != self.solution[r][c]:
+                    return False
+        return True
+
+    def reset_to_original(self):
+        for r in range(self.size):
+            for c in range(self.size):
+                cell = self.cells[r][c]
+                if cell.original:
+                    cell.set_cell_value(self.solution[r][c])
+                else:
+                    cell.set_cell_value(0)
+                    cell.sketched = 0
+                cell.selected = False
