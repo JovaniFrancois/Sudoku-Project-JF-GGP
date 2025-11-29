@@ -1,4 +1,5 @@
 import pygame
+from cell import Cell
 pygame.init()
 
 SCREEN = pygame.display.set_mode((1280, 720))
@@ -54,7 +55,7 @@ def play_game(difficulty):
                     board.select(*cell)
             if event.type == pygame.KEYDOWN:
                 if pygame.K_1 <= event.key <= pygame.K_9:
-                    board.place_number(event.key - pygame.K_0)
+                    board.place_number(event.key - pygame.K_1 + 1)
         
         for i in range(1, 10):
             x = 50 + (i-1) % 3 * 120
@@ -71,37 +72,15 @@ def main_menu():
 
     while True:
         SCREEN.fill((0, 0, 0))
-
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         MENU_TEXT = get_font(60).render("Welcome to Sudoku ", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
-
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
-        EASY_BUTTON = Button(
-            pos=(640, 250),
-            text="EASY 30",
-            font=get_font(50),
-            base_color="white",
-            hover_color="yellow"
-        )
-
-        MED_BUTTON = Button(
-            pos=(640, 350),
-            text="MEDIUM 40",
-            font=get_font(50),
-            base_color="white",
-            hover_color="yellow"
-        )
-
-        HARD_BUTTON = Button(
-            pos=(640, 450),
-            text="HARD 50",
-            font=get_font(50),
-            base_color="white",
-            hover_color="yellow"
-        )
+        EASY_BUTTON = Button((640, 250), "EASY 30", get_font(50), "white", "yellow")
+        MED_BUTTON = Button((640, 350), "MEDIUM 40", get_font(50), "white", "yellow")
+        HARD_BUTTON = Button((640, 450), "HARD 50", get_font(50), "white", "yellow")
 
         for button in [EASY_BUTTON, MED_BUTTON, HARD_BUTTON]:
             button.change_color(MENU_MOUSE_POS)
@@ -111,15 +90,13 @@ def main_menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if EASY_BUTTON.check_for_input(MENU_MOUSE_POS):
-                    play_game(30)  
+                    play_game(30)
                 if MED_BUTTON.check_for_input(MENU_MOUSE_POS):
-                    play_game(40)  
+                    play_game(40)
                 if HARD_BUTTON.check_for_input(MENU_MOUSE_POS):
-                    play_game(50)  
+                    play_game(50)
 
         pygame.display.update()
-
 main_menu()
