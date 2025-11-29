@@ -1,6 +1,3 @@
-Lebron = 23
-
-
 import pygame
 
 class Cell:
