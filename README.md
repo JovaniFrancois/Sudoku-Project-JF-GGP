@@ -1,5 +1,5 @@
 # Sudoku-Project
-##Thank you for joining our Sudoku Generator. Get ready for a lifelike experience of the iconic game.
+Thank you for joining our Sudoku Generator. Get ready for a lifelike experience of the iconic game.
 
 ## Fork Repository Instructions
 ### Steps:
