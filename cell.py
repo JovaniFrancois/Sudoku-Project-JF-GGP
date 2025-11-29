@@ -8,6 +8,7 @@ class Cell:
         self.col = col
         self.screen = screen
         self.selected = False
+        self.original = False
 
     def set_cell_value(self, value):
         self.value = value
